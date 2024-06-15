@@ -28,7 +28,26 @@ MainWindowCallback( HWND Window,
 		{
 			OutputDebugStringA("WM_ACTIVATEAPP\n");
 		} break;
-		
+		case WM_PAINT:
+		{
+			PAINTSTRUCT Paint;
+			HDC DeviceContext = BeginPaint(Window, &Paint);
+			int X = Paint.rcPaint.left;
+			int Y = Paint.rcPaint.top;
+			int Height = Paint.rcPaint.bottom - Paint.rcPaint.top;
+			int Width = Paint.rcPaint.right - Paint.rcPaint.left;
+			static DWORD Operation = WHITENESS;
+			PatBlt(DeviceContext, X, Y, Width, Height, Operation);
+			if(Operation == WHITENESS)
+			{
+				Operation = BLACKNESS;
+			}
+			else
+			{
+				Operation = WHITENESS;
+			}
+			EndPaint(Window, &Paint);
+		} break;
 		default:
 		{
 			OutputDebugStringA("default\n");
@@ -59,17 +78,30 @@ WinMain(HINSTANCE Instance,
 						WindowClass.lpszClassName,
 						"Handmade Hero",
 						WS_OVERLAPPEDWINDOW|WS_VISIBLE,
-						CS_USEDEFAULT,
-						CS_USEDEFAULT,
-						CS_USEDEFAULT,
-						CS_USEDEFAULT,
+						CW_USEDEFAULT,
+						CW_USEDEFAULT,
+						CW_USEDEFAULT,
+						CW_USEDEFAULT,
 						0,
 						0,
 						Instance,
 						0);
 			if(WindowHandle)
 			{
-				
+				for(;;)
+				{
+					MSG Message;
+					BOOL MessageResult = GetMessage(&Message, 0, 0, 0);
+					if(MessageResult > 0)
+					{
+						TranslateMessage(&Message);
+						DispatchMessage(&Message);
+					}
+					else
+					{
+						break;
+					}
+				}	
 			}
 			else
 			{
