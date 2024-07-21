@@ -1,6 +1,0 @@
-from build directory: 
-	devenv win32_handmade.exe
-	cd ..\handmade\misc
-from misc directory:
-	cd ..\..\build
-	.\build
