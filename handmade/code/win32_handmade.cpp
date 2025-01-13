@@ -185,14 +185,14 @@ WinMain(HINSTANCE Instance,
 		WindowClass.style = CS_HREDRAW|CS_VREDRAW; 
 		WindowClass.lpfnWndProc = Win32MainWindowCallback; 
 		WindowClass.hInstance = Instance;
-		WindowClass.lpszClassName = "HandmadeHeroWindowClass";
+		WindowClass.lpszClassName = TEXT("HandmadeHeroWindowClass");
 	
 		if(RegisterClass(&WindowClass))
 		{
 			HWND Window = CreateWindowEx(
            				0,
 						WindowClass.lpszClassName,
-						"Handmade Hero",
+						TEXT("Handmade Hero"),
 						WS_OVERLAPPEDWINDOW|WS_VISIBLE,
 						CW_USEDEFAULT,
 						CW_USEDEFAULT,
