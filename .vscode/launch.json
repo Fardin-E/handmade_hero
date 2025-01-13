@@ -5,13 +5,13 @@
             "name": "(Windows) Launch",
             "type": "cppvsdbg",
             "request": "launch",
-            "program": "${workspaceFolder}\\handmade\\code\\win32_handmade.exe", // Update path to the .exe
+            "program": "${workspaceFolder}..\\..\\build\\${fileBasenameNoExtension}.exe",  // Path to .exe in build folder
             "args": [],
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
+            "cwd": "${fileDirname}",
             "environment": [],
             "console": "externalTerminal",
-            "preLaunchTask": "C/C++: cl.exe build active file" // Reference the build task here
+            "preLaunchTask": "C/C++: cl.exe build active file"  // Run build task before launching
         }
     ]
 }
