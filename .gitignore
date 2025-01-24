@@ -1,2 +1,5 @@
 build
 handmade/code/win32_handmade.asm
+.vs
+.vscode
+.idea
